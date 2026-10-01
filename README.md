@@ -82,15 +82,34 @@ The final model was trained on the complete training dataset after the decision 
 
 ## Evaluation
 
-The project evaluates model performance using:
+The models were evaluated using ROC-AUC, PR-AUC, precision, recall, F1-score, and confusion matrices.
 
-- ROC-AUC
-- Precision
-- Recall
-- F1-score
-- Confusion Matrix
+### Model Comparison
 
-Because loan default is an imbalanced classification problem, accuracy is not treated as the only measure of model performance.
+| Model               | ROC-AUC | PR-AUC | Default Recall | Default Precision |
+| ------------------- | ------: | -----: | -------------: | ----------------: |
+| Logistic Regression |   0.881 |  0.447 |          75.2% |             25.2% |
+| Random Forest       |   0.890 |  0.402 |          30.9% |             50.5% |
+
+The Random Forest was selected as the final model after hyperparameter tuning.
+
+### Final Model
+
+The tuned Random Forest achieved:
+
+- **Test ROC-AUC:** 0.890
+- **Decision threshold:** 0.63
+- **Default precision:** 42%
+- **Default recall:** 50%
+- **Default F1-score:** 46%
+- **Overall accuracy:** 93%
+
+The final confusion matrix was:
+
+````text
+[[4476  217]
+ [ 152  155]]
+
 
 ## Threshold Selection
 
@@ -113,6 +132,24 @@ Predicted default probabilities are also used to create three risk categories:
 
 These categories are intended for relative risk segmentation rather than calibrated probability-of-default estimates.
 
+
+### Add this after your Risk Segmentation section
+
+```markdown
+### Risk Segment Results
+
+The final test set contained 5,000 applicants.
+
+| Risk Band | Applicants | Actual Defaults | Actual Default Rate |
+|---|---:|---:|---:|
+| Low Risk | 3,458 | 32 | 0.93% |
+| Medium Risk | 879 | 72 | 8.19% |
+| High Risk | 663 | 203 | 30.62% |
+
+The observed default rate increases substantially across the three exploratory risk bands, providing useful separation for relative risk segmentation.
+
+The average predicted probabilities were approximately 8.12%, 33.74%, and 66.52% for the Low, Medium, and High Risk groups respectively. These probabilities are not treated as calibrated probabilities of default.
+
 ## Project Structure
 
 ```text
@@ -131,4 +168,4 @@ credit-risk-project/
 ├── README.md
 └── requirements.txt
 
-```
+````
