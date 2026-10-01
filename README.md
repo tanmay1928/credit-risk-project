@@ -106,10 +106,10 @@ The tuned Random Forest achieved:
 
 The final confusion matrix was:
 
-````text
-[[4476  217]
- [ 152  155]]
-
+- True Negatives: 4,476
+- False Positives: 217
+- False Negatives: 152
+- True Positives: 155
 
 ## Threshold Selection
 
