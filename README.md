@@ -133,9 +133,6 @@ Predicted default probabilities are also used to create three risk categories:
 These categories are intended for relative risk segmentation rather than calibrated probability-of-default estimates.
 
 
-### Add this after your Risk Segmentation section
-
-```markdown
 ### Risk Segment Results
 
 The final test set contained 5,000 applicants.
